@@ -18,6 +18,8 @@ import mohamed.code81.lms.common.response.PageableResponseDto;
 import mohamed.code81.lms.common.util.CookieUtil;
 import mohamed.code81.lms.common.util.EncryptionUtil;
 import mohamed.code81.lms.common.util.JwtUtil;
+import mohamed.code81.lms.log.dto.request.UserActivityLogRequestDto;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +38,7 @@ public class UserServiceImpl implements UserService, UserExplorerService, UserRo
     private final JwtUtil jwtUtil;
     private final CookieUtil cookieUtil;
     private final EncryptionUtil encryptionUtil;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Override
     public UserResponseDto register(RegisterRequestDto dto) {
@@ -47,9 +50,11 @@ public class UserServiceImpl implements UserService, UserExplorerService, UserRo
 
         User user = userMapper.toUser(dto, encryptedPassword);
 
-        return userMapper.toUserResponse(
-                userRepository.save(user)
-        );
+        User savedUser =  userRepository.save(user);
+
+        pushEvent(savedUser, "register");
+
+        return userMapper.toUserResponse(savedUser);
     }
 
     @Override
@@ -68,6 +73,8 @@ public class UserServiceImpl implements UserService, UserExplorerService, UserRo
 
             cookieUtil.setInCookie(refreshToken);
 
+            pushEvent(user, "login");
+
             return userMapper.toLoginResponse(user, accessToken, refreshToken);
         }
 
@@ -79,6 +86,8 @@ public class UserServiceImpl implements UserService, UserExplorerService, UserRo
         User user = getById(id);
 
         user.setActive(!user.getActive());
+
+        pushEvent(user, "update user activation");
 
         return userMapper.toUserResponse(
                 userRepository.save(user)
@@ -99,7 +108,9 @@ public class UserServiceImpl implements UserService, UserExplorerService, UserRo
 
     @Override
     public void deleteUser(UUID id) {
-        userRepository.delete(getById(id));
+        User user = getById(id);
+        pushEvent(user, "delete user with id: "+id);
+        userRepository.delete(user);
     }
 
     @Override
@@ -111,6 +122,7 @@ public class UserServiceImpl implements UserService, UserExplorerService, UserRo
     @Override
     public void updateUserRole(UUID id, UserRole role) {
         User user = getById(id);
+        pushEvent(user, "update user role From: "+user.getRole()+"to: "+role);
         user.setRole(role);
         userRepository.save(user);
     }
@@ -119,5 +131,9 @@ public class UserServiceImpl implements UserService, UserExplorerService, UserRo
         if(Boolean.FALSE.equals(user.getActive())){
             throw new BadCredentialException("this account has been deactivated");
         }
+    }
+
+    private void pushEvent(User user, String action){
+        applicationEventPublisher.publishEvent(new UserActivityLogRequestDto(user, action));
     }
 }
