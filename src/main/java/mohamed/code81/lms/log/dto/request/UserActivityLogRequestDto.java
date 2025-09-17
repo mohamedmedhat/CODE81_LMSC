@@ -1,6 +1,6 @@
 package mohamed.code81.lms.log.dto.request;
 
-import mohamed.code81.lms.auth.user.User;
+import mohamed.code81.lms.user.User;
 
 public record UserActivityLogRequestDto(
         User user,

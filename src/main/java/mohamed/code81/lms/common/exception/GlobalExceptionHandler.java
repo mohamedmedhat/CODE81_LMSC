@@ -1,7 +1,7 @@
 package mohamed.code81.lms.common.exception;
 
-import mohamed.code81.lms.auth.user.exception.BadCredentialException;
-import mohamed.code81.lms.auth.user.exception.UserNotFoundException;
+import mohamed.code81.lms.user.exception.BadCredentialException;
+import mohamed.code81.lms.user.exception.UserNotFoundException;
 import mohamed.code81.lms.common.response.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

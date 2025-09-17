@@ -2,7 +2,7 @@ package mohamed.code81.lms.log;
 
 import jakarta.persistence.*;
 import lombok.*;
-import mohamed.code81.lms.auth.user.User;
+import mohamed.code81.lms.user.User;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;

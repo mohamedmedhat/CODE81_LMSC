@@ -1,9 +1,9 @@
 package mohamed.code81.lms.common.service;
 
 import lombok.RequiredArgsConstructor;
-import mohamed.code81.lms.auth.user.UserRepository;
-import mohamed.code81.lms.auth.user.exception.UserNotFoundException;
-import mohamed.code81.lms.auth.user.projection.EmailAndPasswordAndRoleProjection;
+import mohamed.code81.lms.user.UserRepository;
+import mohamed.code81.lms.user.exception.UserNotFoundException;
+import mohamed.code81.lms.user.projection.EmailAndPasswordAndRoleProjection;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
