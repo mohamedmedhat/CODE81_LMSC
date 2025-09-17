@@ -74,13 +74,6 @@ The system enables libraries to manage **books, authors, categories, publishers,
 - `PUT /api/books/{id}` → Update book  
 - `DELETE /api/books/{id}` → Remove book (Admin only)  
 
-### Members
-- `POST /api/members` → Add new member  
-- `GET /api/members` → List members  
-- `GET /api/members/{id}` → Member details  
-- `PUT /api/members/{id}` → Update member info  
-- `DELETE /api/members/{id}` → Remove member  
-
 ### Borrowing
 - `POST /api/transactions/borrow` → Borrow a book  
 - `POST /api/transactions/return/{id}` → Return book  
