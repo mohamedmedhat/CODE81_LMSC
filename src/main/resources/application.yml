@@ -3,6 +3,9 @@ spring:
     name: lms
   profiles:
     active: dev
+  threads:
+    virtual:
+      enabled: true
 
   flyway:
     enabled: true
