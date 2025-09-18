@@ -27,6 +27,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -117,6 +118,11 @@ public class UserServiceImpl implements UserService, UserExplorerService, UserRo
     public User getById(UUID id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("user with id: " + id + " not found"));
+    }
+
+    @Override
+    public List<User> getByIds(List<UUID> id) {
+        return userRepository.findByIdIn(id);
     }
 
     @Override

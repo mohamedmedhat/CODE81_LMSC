@@ -6,7 +6,7 @@ CREATE TABLE books (
     isbn VARCHAR(255) NOT NULL,
     edition VARCHAR(255) NOT NULL,
     lang VARCHAR(255) NOT NULL,
-    publicationYear INTEGER NOT NULL,
+    publication_year INTEGER NOT NULL,
     summary VARCHAR(255),
     cover_image_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -22,10 +22,10 @@ CREATE TABLE borrowings (
        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
        book_id UUID REFERENCES books(id) ON DELETE CASCADE,
        member_id UUID REFERENCES users(id) ON DELETE CASCADE,
-       borrowDate DATE,
-       returnDate DATE,
-       dueDate DATE,
-       returned BOOLEAN NOT NULL
+       borrow_date DATE,
+       return_date DATE,
+       due_date DATE,
+       returned BOOLEAN DEFAULT FALSE
     );
 
 CREATE TABLE book_category(

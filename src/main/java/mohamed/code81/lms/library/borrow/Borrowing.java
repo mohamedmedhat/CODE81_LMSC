@@ -35,6 +35,5 @@ public class Borrowing {
 
     private LocalDate dueDate;
 
-    @Column(nullable = false)
     private Boolean returned = false;
 }
