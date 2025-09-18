@@ -1,6 +1,5 @@
 package mohamed.code81.lms.log;
 
-import mohamed.code81.lms.auth.user.User;
 import mohamed.code81.lms.common.response.PageableResponseDto;
 import mohamed.code81.lms.log.dto.request.UserActivityLogRequestDto;
 import mohamed.code81.lms.log.dto.response.UserActivityLogResponseDto;
