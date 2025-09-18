@@ -39,6 +39,18 @@ public class BorrowingServiceImpl implements BorrowService {
     }
 
     @Override
+    public BorrowResponseDto returnBorrowedBook(UUID id, UUID userId) {
+        Borrowing borrowing = getById(id);
+        borrowing.setReturned(Boolean.TRUE);
+        Borrowing savedBorrowing = borrowingRepository.save(borrowing);
+
+        User user = userExplorerService.getById(userId);
+        applicationEventPublisher.publishEvent(new UserActivityLogRequestDto(user, "return borrowed book"));
+
+        return borrowingMapper.borrowResponseDto(savedBorrowing);
+    }
+
+    @Override
     public BorrowResponseDto updateBorrowedBook(UUID id, BorrowRequestDto dto, UUID userId) {
         GetMemberAndBookResponseDto response = getMemberAndClient(dto.userId(), dto.bookId());
         Borrowing borrowing = getById(id);
