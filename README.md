@@ -14,9 +14,10 @@ The system enables libraries to manage **books, authors, categories, publishers,
 ---
 
 ## 🏗️ System Architecture
-- **Backend:** Java 17, Spring Boot  
+- **Backend:** Java 21, Spring Boot  
 - **Security:** Spring Security + JWT Authentication  
-- **Database:** PostgreSQL  
+- **Database:** PostgreSQL as image on docker
+- **Caching:** Redis
 - **Build Tool:** Maven  
 - **API Testing:** Postman Collection included  
 
@@ -28,12 +29,9 @@ The system enables libraries to manage **books, authors, categories, publishers,
 
 ### Core Entities
 - **Book** → extended metadata (title, ISBN, authors, publisher, categories, language, edition, publication year, summary, cover image)  
-- **Author** → supports multiple authors per book  
 - **Category** → hierarchical classification (e.g., *Fiction → Sci-Fi*)  
-- **Publisher** → publisher information  
-- **Member** → library members/borrowers  
-- **System User** → administrators, librarians, and staff with RBAC  
-- **Borrowing Transaction** → book borrowing & returning flow  
+- **User** → administrators, librarians, and staff with RBAC  
+- **Borrowing** → book borrowing & returning flow  
 - **User Activity Log** → system actions auditing  
 
 ---
@@ -47,7 +45,7 @@ The system enables libraries to manage **books, authors, categories, publishers,
 - **Librarian**
   - Manage books, authors, categories, publishers, members  
   - Borrow/return transactions  
-- **Staff**
+- **Staff ( Not Used Here )**
   - Issue and return books  
   - Search/view books  
 - **Member**
@@ -96,3 +94,4 @@ The system enables libraries to manage **books, authors, categories, publishers,
 
 ## 📌 Postman Collection
 A full **Postman Collection** is included in:  
+[LMSC.postman.json](https://github.com/user-attachments/files/22408021/LMSC.postman.json)
