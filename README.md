@@ -60,12 +60,12 @@ The system enables libraries to manage **books, authors, categories, publishers,
 ## 📡 REST API Endpoints
 
 ### Authentication & Users
-- `POST /api/auth/register` → Register a new system user (Admin only)  
-- `POST /api/auth/login` → Authenticate & receive JWT  
-- `GET /api/users` → List all users (Admin only)  
-- `GET /api/users/{id}` → Get user details  
-- `PUT /api/users/{id}` → Update user (Admin only)  
-- `DELETE /api/users/{id}` → Deactivate user (Admin only)  
+- `POST /api/v1/auth/register` → Register a new system user (Admin only)  
+- `POST /api/v1/auth/login` → Authenticate & receive JWT  
+- `GET /api/v1/users` → List all users (Admin only)  
+- `GET /api/v1/users/{id}` → Get user details  
+- `PUT /api/v1/users/{id}` → Update user (Admin only)  
+- `DELETE /api/v1/users/{id}` → Deactivate user (Admin only)  
 
 ### Books
 - `POST /api/books` → Add a book (Librarian/Admin)  
@@ -75,13 +75,22 @@ The system enables libraries to manage **books, authors, categories, publishers,
 - `DELETE /api/books/{id}` → Remove book (Admin only)  
 
 ### Borrowing
-- `POST /api/transactions/borrow` → Borrow a book  
-- `POST /api/transactions/return/{id}` → Return book  
-- `GET /api/transactions` → List all transactions  
-- `GET /api/transactions/member/{memberId}` → Member borrowing history  
+- `POST /api/v1/borrowings` → Borrow a book  
+- `PUT /api/v1/borrowings/return/{id}` → Return book
+- `PUT /api/v1/borrowings/{id}` → Update borrowing
+- `GET /api/v1/borrowings` → List all borrowings
+- `GET /api/v1/borrowings` → Borrowind details
+- `DELETE /api/v1/borrowings/{id}` → Remove borrowing
+
+### Categories
+- `POST /api/v1/categories` - Add list of categories
+- `DELETE /api/v1/categories` - Remove list of categories
+- `GET /api/v1/categories` - List all categories
 
 ### Logs
-- `GET /api/logs` → List system user activity logs (Admin only)  
+- `GET /api/v1/user_activity_logs` → List system user activity logs (Admin only)
+- `GET api/v1/user_activity_logs/{id}` → display user activity log (Admin only)
+- `DELETE api/v1/user_activity_logs/{id}` → delete system user activity logs (Admin only)
 
 ---
 
