@@ -22,7 +22,7 @@ public class BorrowingController {
     public ResponseEntity<BorrowResponseDto> borrowBook(
             @RequestBody BorrowRequestDto dto,
             @RequestParam("userId") UUID userId
-            ) {
+    ) {
         return ResponseEntity.status(HttpStatus.CREATED).body(borrowService.borrowBook(dto, userId));
     }
 
@@ -31,8 +31,16 @@ public class BorrowingController {
             @PathVariable UUID id,
             @RequestBody BorrowRequestDto dto,
             @RequestParam("userId") UUID userId
-            ) {
+    ) {
         return ResponseEntity.ok(borrowService.updateBorrowedBook(id, dto, userId));
+    }
+
+    @PutMapping("/return/{id}")
+    public ResponseEntity<BorrowResponseDto> returnBorrowedBook(
+            @PathVariable UUID id,
+            @RequestParam("userId") UUID userId
+    ) {
+        return ResponseEntity.ok(borrowService.returnBorrowedBook(id, userId));
     }
 
     @GetMapping("/{id}")

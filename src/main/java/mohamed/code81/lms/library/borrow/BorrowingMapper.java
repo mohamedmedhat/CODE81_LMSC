@@ -20,6 +20,7 @@ public class BorrowingMapper {
                 .borrowDate(LocalDate.now())
                 .returnDate(dto.returnDate())
                 .dueDate(dto.dueDate())
+                .returned(Boolean.FALSE)
                 .build();
     }
 
