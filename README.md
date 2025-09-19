@@ -95,3 +95,22 @@ The system enables libraries to manage **books, authors, categories, publishers,
 ## 📌 Postman Collection
 A full **Postman Collection** is included in:  
 [LMSC.postman.json](https://github.com/user-attachments/files/22408021/LMSC.postman.json)
+
+---
+## 🛠️ Quick Start
+
+Follow these steps to run the **Library Management System** locally:
+
+### 1️⃣ Ensure Docker Is Installed and Running
+Make sure you have [Docker](https://www.docker.com/get-started) and [Docker Compose](https://docs.docker.com/compose/install/) installed, and that the Docker daemon is running on your machine.
+
+### 2️⃣ Start the Database Container
+From the project root, run:
+```bash
+docker-compose up -d
+```
+### 3️⃣ Run the Spring Boot Application
+In a separate terminal, build and start the backend:
+``` bash
+mvn spring-boot:run
+```
