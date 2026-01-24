@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lmsc-deployment
+  labels:
+    app: lmsc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lmsc
+  template:
+    metadata:
+      labels:
+        app: lmsc
+    spec:
+      containers:
+        - name: lmsc
+          image: momed123/lmsc:1.0
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: lmsc-config
+            - secretRef:
+                name: lmsc-secret
+          env:
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lmsc-secret
+                  key: DB_PASSWORD
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"

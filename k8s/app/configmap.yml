@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lmsc-config
+data:
+  SPRING_PROFILES_ACTIVE: "dev"
+  APP_NAME: "MySpringBootApp"
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/lmscdb"
+  SPRING_DATASOURCE_USERNAME: "myuser"
+  SPRING_DATASOURCE_PASSWORD: "secret"
+  SPRING_REDIS_HOST: "redis"
+  SPRING_REDIS_PORT: "6379"
